@@ -6,6 +6,4 @@ export class EcoEventsService {
   constructor() {
     
    }
-  connect() {
-  }
 }
