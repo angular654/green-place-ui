@@ -1,0 +1,128 @@
+@import url('http://fonts.cdnfonts.com/css/post-no-bills-jaffna');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,80');
+$font-header : Post No Bills Jaffna Light;
+$page-color: #C0FFDE;
+$font-size: 48px;
+$footer-text-color : #DBE3C5;
+$footer-color: #767676;
+
+
+.header {
+    width: auto;
+    height: 160px;
+    background: #00664E;
+    .header-title {
+        font-family: $font-header;
+        font-style: normal;
+        font-size: 90px;
+        text-align: center;
+        vertical-align: center;
+        color: #fff;
+    }
+    /* листик 1 */
+    .leaf-left {
+        padding-top: 30px;
+        position: absolute;
+        transform: rotate(-25.01deg);
+        width: 9%;
+        top:0;
+    }
+    
+    .leaf-right {
+        position: absolute;
+        transform: rotate(-112.91deg);
+        top: 0;
+        width: 9%;
+        right: 8%;
+    }
+}
+
+.main {
+    padding-top: 20px;
+    background-color: $page-color;
+    width: auto;
+    height: auto;
+}
+
+.menu {
+    padding-top: 10px;
+    width: auto;
+    height: 64px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    .menu-item {
+        font-family: $font-header;
+        font-style: normal;
+        font-weight: 300;
+        font-size: $font-size;
+        color: #000000;
+    }
+    .first-item{
+        margin-left: 10%
+    }
+    .login-btn {
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        font-family: $font-header;
+        font-style: normal;
+        font-weight: 300;
+        font-size: $font-size;
+        color: #000000;
+        display: inline;
+        text-align: center;
+        margin-right: 10%;
+        margin-top: 17px;
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-bottom: 27px;
+    }
+}
+.footer {
+    height: 129px;
+    width: auto;
+    background-color: $footer-color;
+    display: flex;
+    .footer-text {
+        font-family: $font-header;
+        font-style: normal;
+        padding-top:10px;
+        font-size: 80px;
+        color: $footer-text-color;
+    }
+    @media (max-width: 800px) {
+        .footer-text {
+            padding-top:30px;
+            font-size: 40px;
+        }
+      }
+}
+
+.about {
+    width: auto;
+    display: flex;
+    hr {
+        width: 270px;
+        height: 0px;
+        border: 1px solid #000000;
+        margin-top: 70px;
+    }
+    .title {
+        font-family: $font-header;
+        font-style: normal;
+        font-weight: 300;
+        font-size: $font-size;
+        color: #000000;
+        text-transform: uppercase;
+    }
+}
+.text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+    color: #000000;
+}
