@@ -1,0 +1,78 @@
+
+.auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .login {
+        width: min-content;
+        height: min-content;
+        background: #C0FFDE;
+    }
+    .border {
+        width: 600px;
+        height: max-content;
+        border: 2px solid #000000;
+        box-sizing: border-box;
+    }
+    .font {
+        text-align: center;
+        font-family: Post No Bills Jaffna Light;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 64px;
+    }
+    .input {
+        width: max-content;
+        height: max-content;
+        background: #C0FFDE;
+        border: 2px solid #000000;
+        box-sizing: border-box;
+        padding-bottom: 20px;
+    }
+    .login-btn {
+        margin-left: 35%;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 48px;
+        line-height: 59px;
+    /* identical to box height */
+        text-transform: uppercase;
+    }
+}
+
+input {
+    margin-left: 10%;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    /* identical to box height */
+
+
+    color: black;
+}
+::placeholder {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    /* identical to box height */
+
+
+    color: #656262;
+  }
+
+  .reg-page-text {
+      padding-left: 30px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 27px;
+    /* identical to box height */
+    
+    text-transform: uppercase;
+    
+    color: #000000;
+  }

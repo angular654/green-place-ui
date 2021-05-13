@@ -9,6 +9,9 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { BlogComponent } from './blog/blog.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostComponent } from './post/post.component';
+import { ParksComponent } from './parks/parks.component';
+import { RecycleComponent } from './recycle/recycle.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { PostComponent } from './post/post.component';
     BlogComponent,
     CreatePostComponent,
     PostComponent,
+    ParksComponent,
+    RecycleComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
