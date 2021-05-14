@@ -12,7 +12,9 @@ import { PostComponent } from './post/post.component';
 import { ParksComponent } from './parks/parks.component';
 import { RecycleComponent } from './recycle/recycle.component';
 import { AuthComponent } from './auth/auth.component';
-
+import { HttpClientModule} from '@angular/common/http';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +30,12 @@ import { AuthComponent } from './auth/auth.component';
   imports: [
     BrowserModule,
     GeoFindModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, FormControl],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

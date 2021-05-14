@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .login {
+    .form {
         width: min-content;
         height: min-content;
         background: #C0FFDE;
@@ -75,4 +75,16 @@ input {
     text-transform: uppercase;
     
     color: #000000;
+  }
+
+  .errors {
+      color: rgb(179, 54, 54);
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 18px;
+  }
+  button {
+      border-radius: 10px;
+      background: #C0FFDE;
   }

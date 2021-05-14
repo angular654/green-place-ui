@@ -30,7 +30,7 @@ export class AuthService {
   private _host = "http://localhost:3000/auth"
   constructor(private http: HttpClient, private cookie: CookieService) { }
   
-  public async register(body:UserRegister): Promise<void> {
+  public async register(body:any): Promise<void> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export class AuthService {
       })
   }
 
-  public async logout(body): Promise<void> {
+  public async logout(): Promise<void> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export class AuthService {
         'Auth': this.cookie.get('token')
       })
     }
-    await this.http.post(`${this._host}/logout`, body, httpOptions).toPromise().then((res) => {
+    await this.http.post(`${this._host}/logout`, httpOptions).toPromise().then((res) => {
       if(res) {
         this.cookie.delete('login');
         this.cookie.delete('password');

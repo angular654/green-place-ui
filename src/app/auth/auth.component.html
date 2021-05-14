@@ -1,13 +1,30 @@
 <div class="auth">
-    <div class="login">
+    <div class="form" *ngIf="toRegister === false">
         <div class="border">
             <div class="font">login</div>
-            <form>
-                <input class="input" placeholder="Email"><br><br>
-                <input class="input" placeholder="password" type="password"><br>
-                <div class="login-btn">Sign in</div>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <input class="input" placeholder="Name" formControlName="login" required><br><br>
+                <input class="input" placeholder="password" type="password" formControlName="password"  required><br><br><br>
+                <button class="login-btn" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+                <h2 class="errors">{{errors}}</h2>
             </form>
-            <h2 class="reg-page-text">Don't have an account yet? Register.</h2>
+            <h2 class="reg-page-text" (click)="toRegisterLogin()">Don't have an account yet?<b>Register.</b></h2>
+        </div>
+    </div>
+    <div class="form" *ngIf="toRegister === true" >
+        <div class="border">
+            <div class="font">register</div>
+            <form [formGroup]="registerForm" (ngSubmit)="register()" *ngIf="isAuth == false">
+                <input class="input" placeholder="name" type="text" formControlName="name" required><br><br>
+                <input class="input" placeholder="login" type="text" formControlName="username" required><br><br>
+                <input class="input" placeholder="age" type="number" formControlName="age" required><br><br>
+                <input class="input" placeholder="phone" type="phone" formControlName="telephone" required><br><br>
+                <input class="input" placeholder="Email" type="email" formControlName="email" required><br><br>
+                <input class="input" placeholder="password" type="password" formControlName="password"  required><br><br><br>
+                <button class="login-btn" [disabled]="registerForm.invalid" type="submit">Sign up</button>
+                <h2 class="errors">{{errors}}</h2>
+            </form>
+            <h2 class="reg-page-text" (click)="toRegisterLogin()">If you already have account, you can <b>login.</b></h2>
         </div>
     </div>
 </div>

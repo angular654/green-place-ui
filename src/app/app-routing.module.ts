@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { AuthComponent } from './auth/auth.component';
 import { BlogComponent } from './blog/blog.component';
 import { CreateEcoEventComponent } from './create-eco-event/create-eco-event.component';
@@ -9,17 +10,18 @@ import { ParksComponent } from './parks/parks.component';
 import { PostComponent } from './post/post.component';
 import { RecycleComponent } from './recycle/recycle.component';
 const routes: Routes = [
-  {path: 'eco-events-map', component: GeoFindComponent},
+  {path: 'eco-events-map', component: GeoFindComponent, canActivate: [AuthGuard]},
   {path: '', component: MainPageComponent},
   {path: 'auth', component: AuthComponent},
-  {path: 'create-eco-event', component: CreateEcoEventComponent},
-  {path: 'article/:id', component: PostComponent},
-  {path: 'parks', component: ParksComponent},
-  {path: 'recycle', component: RecycleComponent},
+  {path: 'create-eco-event', component: CreateEcoEventComponent, canActivate: [AuthGuard]},
+  {path: 'article/:id', component: PostComponent, canActivate: [AuthGuard]},
+  {path: 'parks', component: ParksComponent, canActivate: [AuthGuard]},
+  {path: 'recycle', component: RecycleComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
