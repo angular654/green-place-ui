@@ -11,9 +11,11 @@ export class GeoFindComponent implements AfterViewInit {
   constructor() { }
    public map;
    public markersLayer;
+   public event_lat;
+   public event_lon;
    private events_now:Array<any> = []
    private greenIcon = L.icon({
-       iconUrl: '../../assets/eco-icon.png',
+       iconUrl: '../../assets/eco-icon.svg',
        iconSize:     [64, 64], // size of the icon
        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
        shadowAnchor: [4, 62],  // the same for the shadow
@@ -71,18 +73,13 @@ export class GeoFindComponent implements AfterViewInit {
   }
   private addMarker(e) {
     L.marker([e.latlng.lat,e.latlng.lng],{icon: this.greenIcon}).addTo(this.map).bindPopup('New event here')
+    this.event_lat = e.latlng.lat;
+    this.event_lon = e.latlng.lng;
     this.markers.push({
       ...e.containerPoint,
       ...e.latlng
     });
-    const eco_event = {
-      "title":"test",
-      "subtitle":"1321324",
-      "content": " Some text",
-      "members": [],
-      ...e.latlng,
-      "time": new Date(Date.now())
-    }
+    
   }
 
   }

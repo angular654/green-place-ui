@@ -1,0 +1,30 @@
+* {
+    outline:none;
+}
+.content {
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 40px;
+}
+.coords { 
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.date_input {
+    width: max-content;
+        height: max-content;
+        background: #C0FFDE;
+        border: 2px solid #000000;
+        box-sizing: border-box;
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 30px;
+    padding-left: 20px;
+    border-radius: 2rem;
+}
+.title {
+    text-align: center;
+    text-transform: uppercase;
+}
