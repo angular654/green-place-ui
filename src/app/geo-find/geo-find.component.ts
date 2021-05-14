@@ -1,7 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { WebsocketService } from '../websocket.service';
 import * as L from 'leaflet';
-
 @Component({
   selector: 'app-geo-find',
   templateUrl: './geo-find.component.html',
@@ -10,7 +8,7 @@ import * as L from 'leaflet';
 
 export class GeoFindComponent implements AfterViewInit {
  
-  constructor(private wsc: WebsocketService) { }
+  constructor() { }
    public map;
    public markersLayer;
    private events_now:Array<any> = []
@@ -31,14 +29,6 @@ export class GeoFindComponent implements AfterViewInit {
   public L;
   private markers:Array<any> = []
   ngAfterViewInit() {
-    this.wsc.listen('all-events').subscribe((data:any)=>{
-        this.events_now.push(...data)
-    })
-    this.wsc.listen('events').subscribe((data:any)=>{
-      if(data !== "Service working") {
-        this.events_now.push(...data)
-      }
-    })
     this.initMap()
   }
   ngDoCheck() {
@@ -93,8 +83,6 @@ export class GeoFindComponent implements AfterViewInit {
       ...e.latlng,
       "time": new Date(Date.now())
     }
-    this.wsc.emit('event-creation',eco_event);
-    this.wsc.emit('all-events', eco_event)
   }
 
   }
