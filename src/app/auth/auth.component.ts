@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+
 interface UserRegister {
   name: string;
   age: number;
@@ -23,20 +25,19 @@ interface UserLogin {
 })
 export class AuthComponent implements OnInit {
   public errors:string = ""
-  public isAuth = false
+  public isAuth = true
   public toRegister = false
-  constructor(private auth:AuthService,private fb: FormControl) { }
-  
+  constructor(private auth:AuthService,private fb: FormControl, private cookie:CookieService) { }
   loginForm = new FormGroup({
     login: new FormControl('',[Validators.required,Validators.minLength(3),
       Validators.maxLength(40)]),
     password: new FormControl('',[Validators.required,Validators.minLength(10),
       Validators.maxLength(40)]),
-  })
+  }) 
   registerForm = new FormGroup({
     name: new FormControl('',[Validators.required,Validators.minLength(3),
       Validators.maxLength(40)]),
-    username: new FormControl('',[Validators.required,Validators.minLength(3),
+    login: new FormControl('',[Validators.required,Validators.minLength(3),
       Validators.maxLength(40)]),
     password: new FormControl('',[Validators.required,Validators.minLength(10),
       Validators.maxLength(40)]),
@@ -49,22 +50,37 @@ export class AuthComponent implements OnInit {
   
   ngOnInit(): void {
   }
+  ngDoCheck() {
+    this.checkAuth()
+  }
    private async login() {
     console.log(this.loginForm.value)
     await this.auth.login(this.loginForm.value).then((data) =>{
-       console.log(data)
+      if(data){
+        this.isAuth = false
+      }
     }).catch(err => console.log(err))
    }
    private async register() {
     console.log(this.loginForm.value)
-    await this.auth.register(this.loginForm.value).then((data) =>{
-      console.log(data)
+    await this.auth.register(this.registerForm.value).then((data) =>{
+      if(data){
+        this.isAuth = false
+      }
     }).catch(err => console.log(err))
   }
-  private async logout() {
+   async logout() {
     await this.auth.logout().then((data) =>{
-      console.log(data)
     })
+    this.isAuth = true
+    console.log(this.isAuth)
+  }
+
+  checkAuth():void {
+    if(this.cookie.get('token'))
+      this.isAuth = true
+    else 
+      this.isAuth = false
   }
   private toRegisterLogin(){
       if(this.toRegister === false) 

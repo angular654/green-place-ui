@@ -19,7 +19,6 @@ interface UserLogin {
 
 interface UserLoginResponse {
   token?: string;
-  success: boolean;
 }
 
 @Injectable({
@@ -30,7 +29,7 @@ export class AuthService {
   private _host = "http://localhost:3000/auth"
   constructor(private http: HttpClient, private cookie: CookieService) { }
   
-  public async register(body:any): Promise<void> {
+  public async register(body:any): Promise<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -38,15 +37,18 @@ export class AuthService {
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS'
       })
     }
+    let status = false
     await this.http.post(`${this._host}/register`, body, httpOptions).toPromise().then((res: UserRegister) => {
       if(res) {
         this.cookie.set("login",body.login)
         this.cookie.set("password", body.password);
         this.cookie.set("token", res.token);
+        status = true
       }
       }).catch((err) => {
         console.log(err)
       })
+      return status
   }
 
   public async login(body:UserLogin): Promise<any> {
@@ -58,32 +60,33 @@ export class AuthService {
         'Auth': this.cookie.get('token')
       })
     }
+    let status = false
     await this.http.post(`${this._host}/login`, body, httpOptions).toPromise().then((res: UserLoginResponse) => {
-      if(res.success === true) {
-        this.cookie.set("login",body.login)
-        this.cookie.set("password", body.password);
+      if(res){
         this.cookie.set("token", res.token);
+        status = true
+        this.cookie.set('login',body.login);
+        this.cookie.set('password',body.password);
       }
       }).catch((err) => {
         console.log(err)
       })
+      return status
   }
 
-  public async logout(): Promise<void> {
+  public async logout(): Promise<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
-        'Auth': this.cookie.get('token')
+        'Auth-Token': this.cookie.get('token')
       })
     }
-    await this.http.post(`${this._host}/logout`, httpOptions).toPromise().then((res) => {
-      if(res) {
+    await this.http.post(`${this._host}/logout`, httpOptions).toPromise().then(() => {
         this.cookie.delete('login');
         this.cookie.delete('password');
         this.cookie.delete('token');
-      }
       }).catch((err) => {
         console.log(err)
       })
