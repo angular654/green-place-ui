@@ -20,10 +20,19 @@ export class EcoEventInfoComponent implements OnInit {
 
   constructor(private router:Router, private eco_event_svc:EcoEventsService) { }
   public id;
+  public map;
+  public L;
 
+  public info:Event
   ngOnInit(): void {
     this.id = this.router.url.split('/')[2]
-
+    this.getInfo()
   }
 
+  private async getInfo() {
+    await this.eco_event_svc.getOneEvent(this.id).then((res:Event)=>{
+      this.info = res
+      console.log(res)
+    })
+  }
 }

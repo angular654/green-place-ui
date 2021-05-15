@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { EcoEventsService } from '../eco-events.service';
+import { Router } from '@angular/router';
 import * as L from 'leaflet';
 @Component({
   selector: 'app-geo-find',
@@ -9,7 +10,7 @@ import * as L from 'leaflet';
 
 export class GeoFindComponent implements AfterViewInit {
  
-  constructor(private _eco_ev:EcoEventsService ) { }
+  constructor(private _eco_ev:EcoEventsService, private router:Router ) { }
    public map;
    public markersLayer;
    public event_lat;
@@ -36,6 +37,7 @@ export class GeoFindComponent implements AfterViewInit {
     this.initMap()
     this._eco_ev.getEvents().then((res)=>{
       this.markers = res
+      console.log(res)
       this.getAllEvents(this.markers)
     })
   }
@@ -69,9 +71,9 @@ export class GeoFindComponent implements AfterViewInit {
     this.map.removeLayer(L.marker([e.latlng.lat,e.latlng.lng]))
   } 
 
-  private getAllEvents(events) {
+  private getAllEvents(events:Array<any>) {
     for (let i = 0; i < events.length; i++) {
-      L.marker([events[i].latitude,events[i].longitude],{icon: this.greenIcon}).addTo(this.map).bindPopup(events[i].name)
+      L.marker([events[i].latitude,events[i].longitude],{icon: this.greenIcon}).addTo(this.map).bindPopup(events[i].name).on('click', e => {this.redirect(e)})
     }
   }
   private addMarker(e) {
@@ -88,8 +90,14 @@ export class GeoFindComponent implements AfterViewInit {
   }
   onChanged(back:any){
     if(back) {
+
       this.map_frame = "map-frame"
       this.acess = "enabled"
     }
+  }
+  private redirect(e:any) {
+    let res = this.markers.filter(p => p.latitude === e.latlng.lat && p.longitude === e.latlng.lng)
+    console.log(res[0]._id)
+    this.router.navigate([`eco/${res[0]._id}`])
   }
   }

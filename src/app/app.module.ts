@@ -15,7 +15,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEcoEventComponent } from './create-eco-event/create-eco-event.component';
 import { EcoEventInfoComponent } from './eco-event-info/eco-event-info.component';
- 
+import {DatePipe} from '@angular/common';
 @NgModule({
   declarations: [
     GeoFindComponent,
@@ -37,7 +37,7 @@ import { EcoEventInfoComponent } from './eco-event-info/eco-event-info.component
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [CookieService, FormControl],
+  providers: [CookieService, FormControl, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
