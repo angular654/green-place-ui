@@ -7,6 +7,11 @@
   .map-frame {
     border: 2px solid rgb(31, 109, 31);
     height: 660px;
+    width: 100%
+  }
+  .map-frame-1 {
+    border: 2px solid rgb(31, 109, 31);
+    height: 660px;
     width: 80%
   }
   
@@ -15,4 +20,11 @@
   }
   .create {
     margin-left: 20px;
+  }
+  .disabled {
+    display:none;
+  }
+
+  .enabled {
+    display:flex;
   }

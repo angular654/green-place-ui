@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EcoEventsService } from '../eco-events.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // interface Event {
 //   name: string;
@@ -20,14 +21,30 @@ export class CreateEcoEventComponent implements OnInit {
   @Input() lat: number;
   @Input() long: number;
 
+  
   constructor(private _eco_ev:EcoEventsService) { }
+  createEventForm = new FormGroup({
+    name: new FormControl('',[Validators.required,Validators.minLength(3),
+      Validators.maxLength(60)]),
+    description: new FormControl('',[Validators.required,Validators.minLength(6),
+      Validators.maxLength(500)]),
+    date: new FormControl([Validators.required]),
+    party: new FormControl([])
+  }) 
 
   ngOnInit(): void {
     this.date_now = new Date().toJSON().slice(0,10)
 
   }
 
-  createEvent() {
+  public createEvent():void {
+    const event_data = {
+      ...this.createEventForm.value, 
+      latitude: this.lat, 
+      longitude: this.long
+    }
+    if(this.lat && this.long) {
+      console.log(event_data)
+    }
   }
-
 }

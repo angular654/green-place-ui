@@ -1,6 +1,8 @@
 <div class="map-container">
-    <div class="map-frame">
+    <div  [ngClass]="[map_frame]">
       <div id="map"></div>
     </div>
-    <app-create-eco-event [lat]="event_lat" [long]="event_lon" class="create"></app-create-eco-event>
+    <div [ngClass]="[acess]">
+      <app-create-eco-event  [lat]="event_lat" [long]="event_lon" class="create"></app-create-eco-event>
+    </div>
   </div>

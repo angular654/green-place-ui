@@ -13,6 +13,8 @@ export class GeoFindComponent implements AfterViewInit {
    public markersLayer;
    public event_lat;
    public event_lon;
+   public acess = "disabled"
+   public map_frame = "map-frame"
    private events_now:Array<any> = []
    private greenIcon = L.icon({
        iconUrl: '../../assets/eco-icon.svg',
@@ -72,6 +74,8 @@ export class GeoFindComponent implements AfterViewInit {
     }
   }
   private addMarker(e) {
+    this.acess = "enabled"
+    this.map_frame = "map-frame-1"
     L.marker([e.latlng.lat,e.latlng.lng],{icon: this.greenIcon}).addTo(this.map).bindPopup('New event here')
     this.event_lat = e.latlng.lat;
     this.event_lon = e.latlng.lng;
