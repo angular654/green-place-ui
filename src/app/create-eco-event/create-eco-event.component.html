@@ -1,8 +1,12 @@
 <div class="content">
     <p class="title">create event</p>
-    <input type="date" class="date_input" name="trip-start"
+    <form>
+        <input type="text" placeholder="Title">
+        <input type="text" placeholder="description">
+        <input type="date" class="date_input" name="trip-start"
        value="{{date_now}}"
        min="{{date_now}}" max="2099-12-31">
+    </form>
 </div>
 <p class="coords">lat: {{lat}}</p>
 <p class="coords">lng: {{long}}</p>
