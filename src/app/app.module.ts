@@ -14,6 +14,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule} from '@angular/common/http';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEcoEventComponent } from './create-eco-event/create-eco-event.component';
+import { EcoEventInfoComponent } from './eco-event-info/eco-event-info.component';
  
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CreateEcoEventComponent } from './create-eco-event/create-eco-event.com
     ParksComponent,
     RecycleComponent,
     AuthComponent,
+    EcoEventInfoComponent,
   ],
   imports: [
     BrowserModule,
