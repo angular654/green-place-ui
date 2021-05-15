@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { EcoEventsService } from '../eco-events.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -18,9 +18,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CreateEcoEventComponent implements OnInit {
   public date_now;
+  public visible = "content"
   @Input() lat: number;
   @Input() long: number;
+  @Output() onChanged = new EventEmitter<boolean>();
 
+  change(increased:any) {
+    this.onChanged.emit(increased);
+    this.back()
+  }
   
   constructor(private _eco_ev:EcoEventsService) { }
   createEventForm = new FormGroup({
@@ -36,15 +42,26 @@ export class CreateEcoEventComponent implements OnInit {
     this.date_now = new Date().toJSON().slice(0,10)
 
   }
-
+  ngAfterViewInit(): void {
+  }
+  ngDoCheck() {
+    if(this.lat && this.long) {
+      this.visible = "content"
+    }
+  }
+  public back() {
+    this.visible = "invisible"
+    this.lat = null
+    this.long = null
+  }
   public createEvent():void {
     const event_data = {
       ...this.createEventForm.value, 
       latitude: this.lat, 
       longitude: this.long
     }
-    if(this.lat && this.long) {
-      console.log(event_data)
-    }
+    this._eco_ev.createEvent(event_data).then((res)=>{
+      console.log(res)
+    })
   }
 }

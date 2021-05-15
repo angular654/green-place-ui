@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { EcoEventsService } from '../eco-events.service';
 import * as L from 'leaflet';
 @Component({
   selector: 'app-geo-find',
@@ -8,14 +9,13 @@ import * as L from 'leaflet';
 
 export class GeoFindComponent implements AfterViewInit {
  
-  constructor() { }
+  constructor(private _eco_ev:EcoEventsService ) { }
    public map;
    public markersLayer;
    public event_lat;
    public event_lon;
    public acess = "disabled"
    public map_frame = "map-frame"
-   private events_now:Array<any> = []
    private greenIcon = L.icon({
        iconUrl: '../../assets/eco-icon.svg',
        iconSize:     [64, 64], // size of the icon
@@ -34,9 +34,10 @@ export class GeoFindComponent implements AfterViewInit {
   private markers:Array<any> = []
   ngAfterViewInit() {
     this.initMap()
-  }
-  ngDoCheck() {
-    this.drawAllMarkers(this.events_now);
+    this._eco_ev.getEvents().then((res)=>{
+      this.markers = res
+      this.getAllEvents(this.markers)
+    })
   }
   private initMap(): void {
     let latitude;
@@ -46,6 +47,7 @@ export class GeoFindComponent implements AfterViewInit {
       longitude  = position.coords.longitude
       this.initMapView(latitude,longitude)
       this.map.setZoom(16);
+      this.getAllEvents(this.markers)
     })
   }
    private initMapView(lat:any,long:any) {
@@ -56,7 +58,7 @@ export class GeoFindComponent implements AfterViewInit {
       subdomains:['mt0','mt1','mt2','mt3']
     });
     L.marker([lat, long], {icon: this.myLocationIcon}).addTo(this.map).bindPopup('<b>My location</b>').openPopup();
-    L.circle([lat, long], {radius: 200}).addTo(this.map);
+    L.circle([lat, long], {radius:50}).addTo(this.map);
     this.map.on("click", e => {
       this.addMarker(e);
     });
@@ -66,11 +68,10 @@ export class GeoFindComponent implements AfterViewInit {
   private removeMarker(e) {
     this.map.removeLayer(L.marker([e.latlng.lat,e.latlng.lng]))
   } 
-  private drawAllMarkers(arr:any) {
-    this.events_now = this.events_now.splice(12,0)
-    for (let i = 0; i < arr.length;i++) {
-      L.marker([arr[i].lat, arr[i].lng],{icon: this.greenIcon}).addTo(this.map).bindPopup(arr[i].title)
-      
+
+  private getAllEvents(events) {
+    for (let i = 0; i < events.length; i++) {
+      L.marker([events[i].latitude,events[i].longitude],{icon: this.greenIcon}).addTo(this.map).bindPopup(events[i].name)
     }
   }
   private addMarker(e) {
@@ -85,5 +86,10 @@ export class GeoFindComponent implements AfterViewInit {
     });
     
   }
-
+  onChanged(back:any){
+    if(back) {
+      this.map_frame = "map-frame"
+      this.acess = "enabled"
+    }
+  }
   }

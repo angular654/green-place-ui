@@ -1,4 +1,5 @@
-<div class="content">
+<div [ngClass]="visible">
+    <img src='../../assets/back-icon.png' (click)="change(true)">
     <p class="title">create event</p>
     <form [formGroup]="createEventForm" (ngSubmit)="createEvent()">
         <input type="text" placeholder="Title" formControlName="name" required class="input"><br>

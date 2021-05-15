@@ -3,6 +3,6 @@
       <div id="map"></div>
     </div>
     <div [ngClass]="[acess]">
-      <app-create-eco-event  [lat]="event_lat" [long]="event_lon" class="create"></app-create-eco-event>
+      <app-create-eco-event  [lat]="event_lat" [long]="event_lon" class="create" (onChanged)="onChanged($event)"></app-create-eco-event>
     </div>
   </div>
