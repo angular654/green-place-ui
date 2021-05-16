@@ -1,1 +1,28 @@
-<p>create-post works!</p>
+<div class="post-title">
+    <hr><h1 class="title">New article</h1><hr>
+</div>
+<form [formGroup]="postForm" (ngSubmit)="createPost()">
+<h1 class="select">
+    Select a topic
+</h1>
+<div class="cat">
+    <div  *ngFor="let topic of topics; index as i;" class="cat ">
+        <img src="{{topic.img}}" (click)="choose(topic.title)">
+        <p class="only-show-on-hover">{{topic.title}}</p>
+    </div> 
+</div>
+<hr>
+<h1 class="select">
+    Heading
+</h1>
+<input type="text" placeholder="Heading" class="input" formControlName="heading" required>
+<h1 class="select">
+    Description
+</h1>
+<input type="text" placeholder="Description" class="input" formControlName="description" required>
+<h1 class="select">
+    Article
+</h1>
+<textarea type="text" placeholder="Article content"class="input" formControlName="article" required></textarea><br>
+<button type="submit" [disabled]="postForm.invalid">Create Post</button>
+</form>
