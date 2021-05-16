@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../blog.service';
+import { Router } from '@angular/router';
 interface Post {
   _id:string
   heading: string;
@@ -40,14 +41,17 @@ export class BlogComponent implements OnInit {
     img: "../../assets/solar-energy-cat.svg"
   }]
   cat = null
-  constructor(private blog:BlogService) { }
+  constructor(private blog:BlogService, private router:Router) { }
   range = 3
 
   async ngOnInit(): Promise<void> {
     await this.getPostsByCat()
   }
-  async deletePost() {
-
+  async deletePost(_id:string) {
+    await this.blog.removePost(_id).then((res)=>{
+      console.log(res)
+      this.getPostsByCat()
+    })
   }
   async getPostsByCat() {
     await this.blog.findByTopic(this.cat).then((res:Post[])=>{
@@ -57,5 +61,12 @@ export class BlogComponent implements OnInit {
   }
   readMore(){
     this.range = this.data.length
+  }
+
+  toCreatePost() {
+    this.router.navigate(['/create-post'])
+  }
+  setImage(type) {
+    return this.topics.find(p => p.title === type).img
   }
 }
