@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../blog.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 interface Post {
   _id:string
   heading: string;
@@ -41,17 +43,22 @@ export class BlogComponent implements OnInit {
     img: "../../assets/solar-energy-cat.svg"
   }]
   cat = null
-  constructor(private blog:BlogService, private router:Router) { }
+  constructor(private blog:BlogService, private router:Router, private cookie:CookieService) { }
   range = 2
 
   async ngOnInit(): Promise<void> {
     await this.getPostsByCat()
   }
   async deletePost(_id:string) {
-    await this.blog.removePost(_id).then((res)=>{
-      console.log(res)
-      this.getPostsByCat()
-    })
+    if(!this.cookie.get('token').length){
+      return 
+    }
+    else {
+      await this.blog.removePost(_id).then((res)=>{
+        console.log(res)
+        this.getPostsByCat()
+      })
+    }
   }
   async getPostsByCat() {
     await this.blog.findByTopic(this.cat,this.range).then((res:Post[])=>{
