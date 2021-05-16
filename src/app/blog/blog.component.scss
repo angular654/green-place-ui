@@ -1,0 +1,41 @@
+$header-text : Post No Bills Jaffna Light;
+$content-text : Post No Bills Jaffna Light;
+.read_more {
+    font-family: $header-text;
+    font-size: 24px;
+    margin-left: 40px;
+    background: #C0FFDE;
+    border: 2px solid #000000;
+    font-style: normal;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+.read_more:hover {
+    background-color: yellow;
+}
+.title {
+    color: #006674;
+    font-family: $header-text;
+    font-size: 36px;
+    text-align: center;
+}
+.content {
+    color: #000;
+    font-family: $content-text;
+    font-size: 24px;
+    text-align: left;
+}
+hr {
+    width: 60%;
+    height: 0px;
+    border: 1px solid #000000;
+    margin-top: 20px;
+    
+}
+
+.main-posts {
+    display: flex;
+}
+.post {
+    margin-left: 20%;
+}

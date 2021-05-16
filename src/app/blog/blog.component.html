@@ -1,3 +1,13 @@
-<div class="main-posts">
-    <p>blog works!</p>
+<div class="main-posts" *ngFor="let post of data; index as i;">
+    <div class="post">
+        <img src="{{topics[0].img}}">
+        <div class="post-contents">
+            <p class="title">{{post.heading}}</p>
+            <p class="content">{{post.description}}</p>
+            <p class="content">{{post.article}}</p>
+            <p class="content">{{post.author}}</p>
+            <p class="content">{{post.topic}}</p>
+        </div>
+    </div>
 </div>
+<button class="read_more">Read more +</button>
