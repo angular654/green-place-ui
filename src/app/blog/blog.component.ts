@@ -42,7 +42,7 @@ export class BlogComponent implements OnInit {
   }]
   cat = null
   constructor(private blog:BlogService, private router:Router) { }
-  range = 3
+  range = 2
 
   async ngOnInit(): Promise<void> {
     await this.getPostsByCat()
@@ -54,13 +54,14 @@ export class BlogComponent implements OnInit {
     })
   }
   async getPostsByCat() {
-    await this.blog.findByTopic(this.cat).then((res:Post[])=>{
+    await this.blog.findByTopic(this.cat,this.range).then((res:Post[])=>{
       this.data = res
       console.log(this.data)
     })
   }
-  readMore(){
-    this.range = this.data.length
+  async readMore() { 
+    this.range = null
+    await this.getPostsByCat()
   }
 
   toCreatePost() {
