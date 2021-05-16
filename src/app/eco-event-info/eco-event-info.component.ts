@@ -36,4 +36,14 @@ export class EcoEventInfoComponent implements OnInit {
       console.log(res)
     })
   }
+  public async deleteEvent() {
+    await this.eco_event_svc.deleteEvent(this.id).then((res)=>{
+      console.log(res)
+      this.router.navigate(['/eco-events-map'])
+    })
+  }
+  public toCalendar() {
+    this.router.navigate(['/calendar'])
+  }
+  
 }

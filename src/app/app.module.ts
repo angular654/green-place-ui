@@ -17,6 +17,8 @@ import { CreateEcoEventComponent } from './create-eco-event/create-eco-event.com
 import { EcoEventInfoComponent } from './eco-event-info/eco-event-info.component';
 import { DatePipe } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
+import { EventCalendarComponent } from './event-calendar/event-calendar.component';
+import {CalendarCreatorService} from './calendar-creator.service';
 @NgModule({
   declarations: [
     GeoFindComponent,
@@ -30,6 +32,7 @@ import { AgmCoreModule } from '@agm/core';
     RecycleComponent,
     AuthComponent,
     EcoEventInfoComponent,
+    EventCalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyC9-Zg50ws-K1QUIwwuTcK7_fCsYPzRqBg'
     })
   ],
-  providers: [CookieService, FormControl, DatePipe],
+  providers: [CookieService, FormControl, DatePipe,CalendarCreatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

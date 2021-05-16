@@ -4,7 +4,7 @@
             <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
           </agm-map>
           <div class="info">
-            <img src="../../assets/eco-icon.svg">
+            <img src="../../assets/eco-icon.svg" (click)="toCalendar()">
             <p>{{info.name}}</p>
             <p>{{info.description}}</p>
             <input type="date" class="date_input" name="trip-start"
@@ -12,6 +12,7 @@
                 min="{{info.date | date: 'yyyy-MM-dd'}}" max="{{info.date | date: 'yyyy-MM-dd'}}" disabled>
             <p>lat: {{info.latitude}}</p>
             <p>lng: {{info.longitude}}</p>
+            <button (click)="deleteEvent()" class="delete-btn">Delete</button>
           </div>
     </div>
 </div>
