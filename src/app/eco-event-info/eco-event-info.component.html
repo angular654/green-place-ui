@@ -1,12 +1,17 @@
 <div class="content">
     <div class="border">
-        <img src="../../assets/eco-icon.svg">
-        <p>{{info.name}}</p>
-        <p>{{info.description}}</p>
-        <input type="date" class="date_input" name="trip-start"
-            value="{{info.date | date: 'yyyy-MM-dd'}}"
-            min="{{info.date | date: 'yyyy-MM-dd'}}" max="{{info.date | date: 'yyyy-MM-dd'}}" disabled>
-        <p>lat: {{info.latitude}}</p>
-        <p>lng: {{info.longitude}}</p>
+        <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+          <div class="info">
+            <img src="../../assets/eco-icon.svg">
+            <p>{{info.name}}</p>
+            <p>{{info.description}}</p>
+            <input type="date" class="date_input" name="trip-start"
+                value="{{info.date | date: 'yyyy-MM-dd'}}"
+                min="{{info.date | date: 'yyyy-MM-dd'}}" max="{{info.date | date: 'yyyy-MM-dd'}}" disabled>
+            <p>lat: {{info.latitude}}</p>
+            <p>lng: {{info.longitude}}</p>
+          </div>
     </div>
 </div>

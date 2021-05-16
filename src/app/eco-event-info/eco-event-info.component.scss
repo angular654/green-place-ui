@@ -25,29 +25,17 @@ div {
     margin-right: auto;
 }
 .border {
-    width: fit-content;
+  display:flex;
+    width: 700px;
     border-radius: 15px;
-    border: 2px dotted #065c06;
     box-sizing: border-box;
 }
 
-.map-container {
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
+  .info {
+    padding-left: 10%;
   }
-  
-  .map-frame {
-    border: 2px solid rgb(31, 109, 31);
-    height: 660px;
-    width: 100%
-  }
-  .map-frame-1 {
-    border: 2px solid rgb(31, 109, 31);
-    height: 660px;
-    width: 80%
-  }
-  
-  #map {
-    height: 100%;
+  agm-map {
+    display: inline;
+    height: 400px;
+    width: 400px;
   }

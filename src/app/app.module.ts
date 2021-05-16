@@ -15,7 +15,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEcoEventComponent } from './create-eco-event/create-eco-event.component';
 import { EcoEventInfoComponent } from './eco-event-info/eco-event-info.component';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     GeoFindComponent,
@@ -35,7 +36,10 @@ import {DatePipe} from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC9-Zg50ws-K1QUIwwuTcK7_fCsYPzRqBg'
+    })
   ],
   providers: [CookieService, FormControl, DatePipe],
   bootstrap: [AppComponent]

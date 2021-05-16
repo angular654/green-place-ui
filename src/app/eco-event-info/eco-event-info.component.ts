@@ -20,9 +20,8 @@ export class EcoEventInfoComponent implements OnInit {
 
   constructor(private router:Router, private eco_event_svc:EcoEventsService) { }
   public id;
-  public map;
-  public L;
-
+  public lat;
+  public lng;
   public info:Event
   ngOnInit(): void {
     this.id = this.router.url.split('/')[2]
@@ -32,6 +31,8 @@ export class EcoEventInfoComponent implements OnInit {
   private async getInfo() {
     await this.eco_event_svc.getOneEvent(this.id).then((res:Event)=>{
       this.info = res
+      this.lat = res.latitude
+      this.lng = res.longitude
       console.log(res)
     })
   }
