@@ -19,6 +19,15 @@ import { DatePipe } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { EventCalendarComponent } from './event-calendar/event-calendar.component';
 import {CalendarCreatorService} from './calendar-creator.service';
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+FullCalendarModule.registerPlugins([ 
+  interactionPlugin,
+  dayGridPlugin
+]);
+
 @NgModule({
   declarations: [
     GeoFindComponent,
@@ -40,6 +49,7 @@ import {CalendarCreatorService} from './calendar-creator.service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    FullCalendarModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC9-Zg50ws-K1QUIwwuTcK7_fCsYPzRqBg'
     })

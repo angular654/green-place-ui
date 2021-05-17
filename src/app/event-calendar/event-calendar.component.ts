@@ -1,64 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarCreatorService } from "../calendar-creator.service";
-import { Day } from "../../models/day.model";
+import { CalendarOptions } from '@fullcalendar/angular';
 import { EcoEventsService } from '../eco-events.service';
-import * as m from 'moment';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-event-calendar',
   templateUrl: './event-calendar.component.html',
   styleUrls: ['./event-calendar.component.scss']
 })
 export class EventCalendarComponent implements OnInit {
-  public monthDays: Day[];
-
-  public monthNumber: number;
-  public year: number;
-  public events = []
-  public weekDaysName = [];
-  constructor(public calendarCreator: CalendarCreatorService, private eco:EcoEventsService) {
+  Events = [];
+  clean_events = [];
+  calendarOptions: CalendarOptions;
+  constructor(public calendarCreator: CalendarCreatorService,private eco_evs: EcoEventsService, private router:Router) {
   }
   ngOnInit(): void {
-    this.setMonthDays(this.calendarCreator.getCurrentMonth());
-    this.weekDaysName.push("Mo");
-    this.weekDaysName.push("Tu");
-    this.weekDaysName.push("We");
-    this.weekDaysName.push("Th");
-    this.weekDaysName.push("Fr");
-    this.weekDaysName.push("Sa");
-    this.weekDaysName.push("Su");
-    this.eco.getEvents().then((res)=>{
-      this.events = res
-      let moment = m(res[5].date)
-      console.log(moment.format('ll'))
-    })
+   this.eco_evs.getEvents().then((res)=>{
+     this.Events = res
+     this.cleanEvent(this.Events)
+     this.calendarOptions = {
+      initialView: 'dayGridMonth',
+      events: this.clean_events
+    };
+   })
   }
-
-  onNextMonth(): void {
-    this.monthNumber++;
-
-    if (this.monthNumber == 13) {
-      this.monthNumber = 1;
-      this.year++;
+  cleanEvent(events:any) {
+    for (let i = 0; i < events.length; i++) {
+      let el = {
+        title : events[i].name,
+        ...events[i]
+      }
+      this.clean_events.push(el)
     }
-
-    this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
-  }
-
-  onPreviousMonth() : void{
-    this.monthNumber--;
-
-    if (this.monthNumber < 1) {
-      this.monthNumber = 12;
-      this.year--;
-    }
-
-    this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
-  }
-
-  private setMonthDays(days: Day[]): void {
-    this.monthDays = days;
-    this.monthNumber = this.monthDays[0].monthIndex;
-    this.year = this.monthDays[0].year;
   }
 }
  
