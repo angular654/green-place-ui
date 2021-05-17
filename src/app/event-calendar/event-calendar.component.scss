@@ -1,0 +1,29 @@
+.calendar {
+    width: 600px;
+    padding-left: 300px;
+    .day {
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 30px;
+      width: 80px;
+      display: inline-block;
+    }
+  }
+.calendar-container {
+    padding-left: 300px;
+}
+.btn {
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-size: 24px;
+    margin-left: 40px;
+    background: #C0FFDE;
+    border: 2px solid #000000;
+    font-style: normal;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+div {
+  width: 70%;
+}

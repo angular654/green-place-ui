@@ -1,1 +1,14 @@
-<p>create-eco-event works!</p>
+<div [ngClass]="visible">
+    <img src='../../assets/back-icon.png' (click)="change(true)">
+    <p class="title">create event</p>
+    <form [formGroup]="createEventForm" (ngSubmit)="createEvent()">
+        <input type="text" placeholder="Title" formControlName="name" required class="input"><br>
+        <textarea type="text" placeholder="description" formControlName="description" required class="input"></textarea><br>
+        <input type="date" class="date_input" name="trip-start"
+       value="{{date_now}}"
+       min="{{date_now}}" max="2099-12-31" formControlName="date" required><br><br><br>
+       <p class="coords">lat: {{lat}}</p>
+       <p class="coords">lng: {{long}}</p>
+       <button type="submit" [disabled]="createEventForm.invalid">Create Event</button>
+    </form>
+</div>

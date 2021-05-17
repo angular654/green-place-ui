@@ -1,9 +1,21 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<router-outlet></router-outlet>
+<div class="header">
+    <div class="header-title" routerLink="">green place</div>
+    <img src="../../assets/leaf-header-left.svg" class ="leaf-left" alt="leaf">
+    <img src="../../assets/leaf-header-right.svg" class ="leaf-right" alt="leaf">
+</div>
+<div class="menu">
+    <div class="menu-item first-item">Rostov-on-Don <img src="../assets/polygon.svg"></div> 
+    <div class="menu-item " routerLink="recycle">recycling</div> 
+    <div class="menu-item" routerLink="eco-events-map">events</div>
+    <div class="menu-item" routerLink="parks">parks</div>
+    <div class="login-btn" routerLink="auth" >{{login_content}}</div> 
+</div>
+<div class="main">
+    <router-outlet></router-outlet>
+</div>
+<div class="footer">
+    <img src="../../assets/recycle-icon.svg">
+    <div class="footer-text">green place</div>
+    <img  src="../../assets/leaf-header-left.svg">
+    <img  src="../../assets/leaf-header-right.svg">
+</div>

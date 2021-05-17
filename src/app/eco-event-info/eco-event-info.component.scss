@@ -1,0 +1,59 @@
+* {
+    outline:none;
+}
+.date_input {
+    width: max-content;
+    height: max-content;
+    background: #C0FFDE;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 30px;
+    padding-left: 20px;
+    border-radius: 2rem;
+}
+img:active {
+  background-color: rgb(79, 161, 150);
+  border-radius: 200px;
+}
+p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 24px;
+}
+div {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.border {
+  display:flex;
+    width: 700px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+  .info {
+    padding-left: 10%;
+  }
+  agm-map {
+    display: inline;
+    height: 400px;
+    width: 400px;
+  }
+  .delete-btn {
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-size: 24px;
+    background: #C0FFDE;
+    border: 2px solid #000000;
+    font-style: normal;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.delete-btn:hover {
+  color: azure;
+  background-color: red;
+}

@@ -1,1 +1,13 @@
-<p>blog works!</p>
+<div class="main-posts" *ngFor="let post of data; index as i;">
+    <div class="post">
+        <img [src]="setImage(post.topic)" class="img"><button class="delete-btn" (click)="deletePost(post._id)">Delete</button>
+        <div class="post-contents">
+            <p class="title">{{post.heading}}</p>
+            <b class="content">{{post.description}}</b>
+            <p class="content">{{post.article}}</p>
+            <i class="content">{{post.author}}</i>
+            <p class="content">{{post.topic}}</p>
+        </div>
+    </div>
+</div>
+<button class="read_more" (click)="readMore()">Read more +</button> <button class="add-post" (click)="toCreatePost()">Add new post</button>
