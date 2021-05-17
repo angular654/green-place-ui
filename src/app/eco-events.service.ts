@@ -15,7 +15,7 @@ interface Event {
   providedIn: 'root'
 })
 export class EcoEventsService {
-  private readonly _host = "http://localhost:3000/events";
+  private readonly _host = "https://eco-portal.herokuapp.com/events";
   private readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

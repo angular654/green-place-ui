@@ -13,7 +13,7 @@ app.use(requireHTTPS);
 app.use(express.static('./dist/angular-heroku'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/angular-heroku/'}),
+    res.sendFile('index.html', {root: 'dist/ecofinder/'}),
 );
 
 app.listen(process.env.PORT || 8080);

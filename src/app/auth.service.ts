@@ -26,7 +26,7 @@ interface UserLoginResponse {
 })
 export class AuthService {
   
-  private _host = "http://localhost:3000/auth"
+  private _host = "https://eco-portal.herokuapp.com/auth"
   constructor(private http: HttpClient, private cookie: CookieService) { }
   
   public async register(body:any): Promise<any> {

@@ -1,18 +1,20 @@
-FROM node:14 AS builder
+
+FROM node:10-alpine as build-step
+
+RUN mkdir -p /app
 
 WORKDIR /app
 
-COPY . .
+COPY package.json /app
 
-RUN npm i && npm run build
+RUN npm install
 
+COPY . /app
 
-FROM nginx:alpine
+RUN npm run build --prod
 
-WORKDIR /usr/share/nginx/html
+# Stage 2
 
-RUN rm -rf ./*
+FROM nginx:1.17.1-alpine
 
-COPY --from=builder /app/dist/ecofinder .
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY --from=build-step /app/docs /usr/share/nginx/html

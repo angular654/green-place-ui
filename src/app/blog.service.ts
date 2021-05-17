@@ -12,7 +12,7 @@ interface Post {
   providedIn: 'root'
 })
 export class BlogService {
-  private readonly _host = "http://localhost:3000/blogs";
+  private readonly _host = "https://eco-portal.herokuapp.com/blogs";
   private readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
